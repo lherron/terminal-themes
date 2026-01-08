@@ -16,7 +16,10 @@
       "Bash(git clone:*)",
       "Bash(python3:*)",
       "Bash(uvx python:*)",
-      "Bash(uvx yq:*)"
+      "Bash(uvx yq:*)",
+      "Bash(chmod:*)",
+      "Bash(ln:*)",
+      "Bash(/Users/lherron/projects/lsd-theme/claude-code/statusline-command.sh)"
     ]
   }
 }

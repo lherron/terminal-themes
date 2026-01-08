@@ -1,6 +1,6 @@
 # lsd-theme
 
-Custom "Warm Graphite" theme for terminal using [lsd](https://github.com/lsd-rs/lsd), [vivid](https://github.com/sharkdp/vivid), and [powerlevel10k](https://github.com/romkatv/powerlevel10k).
+Custom "Warm Graphite" theme for terminal using [lsd](https://github.com/lsd-rs/lsd), [vivid](https://github.com/sharkdp/vivid), [powerlevel10k](https://github.com/romkatv/powerlevel10k), and [Claude Code](https://claude.ai/code).
 
 ## Repository Structure
 
@@ -12,8 +12,10 @@ lsd-theme/
 ├── vivid/
 │   └── themes/
 │       └── warm-graphite.yml  # file type colors
-└── p10k/
-    └── p10k.zsh       # powerlevel10k prompt config
+├── p10k/
+│   └── p10k.zsh       # powerlevel10k prompt config
+└── claude-code/
+    └── statusline-command.sh  # Claude Code statusline
 ```
 
 ## Installation
@@ -28,11 +30,12 @@ cp lsd/*.yaml ~/.config/lsd/
 mkdir -p ~/.config/vivid/themes
 cp vivid/themes/warm-graphite.yml ~/.config/vivid/themes/
 ln -sf $(pwd)/p10k/p10k.zsh ~/.p10k.zsh
+ln -sf $(pwd)/claude-code/statusline-command.sh ~/.claude/statusline-command.sh
 ```
 
 ## Architecture
 
-Three complementary systems handle different aspects of coloring:
+Four complementary systems handle different aspects of coloring:
 
 | System | Config Location | Purpose |
 |--------|-----------------|---------|
@@ -40,6 +43,7 @@ Three complementary systems handle different aspects of coloring:
 | **lsd** | `~/.config/lsd/colors.yaml` | UI metadata (user, group, permissions, dates, git status) |
 | **lsd** | `~/.config/lsd/config.yaml` | Layout and behavior settings |
 | **p10k** | `~/.p10k.zsh` (symlink) | Prompt colors (hostname, dir, git, status) |
+| **claude-code** | `~/.claude/statusline-command.sh` (symlink) | Claude Code statusline (model, dir, context usage) |
 
 ## Color Palette (ANSI 256)
 

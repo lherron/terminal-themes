@@ -28,12 +28,26 @@
   # Zsh >= 5.1 is required.
   [[ $ZSH_VERSION == (5.<1->*|<6->.*) ]] || return
 
+  # Simplified prompt for SSH sessions
+  if [[ -n "$SSH_CONNECTION" ]]; then
+    typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+      context                 # user@host
+      dir                     # current directory
+      prompt_char             # prompt symbol
+    )
+    typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+      status                  # exit code of the last command
+    )
+    typeset -g POWERLEVEL9K_DIR_MAX_LENGTH=40
+    typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
+    typeset -g POWERLEVEL9K_CONTEXT_PREFIX=''
+  else
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # os_icon               # os identifier
     host                    # hostname
     dir                     # current directory
-    vcs                     # git status
+    # vcs                   # git status (disabled for performance)
     prompt_char             # prompt symbol
   )
 
@@ -110,6 +124,7 @@
     # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
   )
+  fi  # end SSH check
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
   typeset -g POWERLEVEL9K_MODE=nerdfont-v3
@@ -222,7 +237,7 @@
   typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=243
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
   # segment is always an anchor.
-  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=223
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=180
   # Display anchor directory segments in bold.
   typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true
   # Don't shorten directories that contain any of these files. They are anchors.
@@ -926,8 +941,8 @@
 
   # Custom icon.
   # typeset -g POWERLEVEL9K_CONTEXT_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # Custom prefix.
-  typeset -g POWERLEVEL9K_CONTEXT_PREFIX='%fwith '
+  # Custom prefix (skip for SSH - context is on left side).
+  [[ -z "$SSH_CONNECTION" ]] && typeset -g POWERLEVEL9K_CONTEXT_PREFIX='%fwith '
 
   ###[ virtualenv: python virtual environment (https://docs.python.org/3/library/venv.html) ]###
   # Python virtual environment color.

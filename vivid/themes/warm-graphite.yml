@@ -21,7 +21,7 @@ colors:
   sage:       "6c6c6c"    # demoted to gray (less green pop)
   gold:       "c9a050"    # muted gold (ANSI 179)
   mauve:      "b4a0c8"    # soft lavender (ANSI 182)
-  teal:       "6c9090"    # muted teal
+  teal:       "5fafaf"    # bright teal (ANSI 73)
   peach:      "d7a078"    # warm peach/salmon (ANSI 180 - accent)
   rose:       "b08080"    # muted rose
   tan:        "a8a078"    # muted tan
